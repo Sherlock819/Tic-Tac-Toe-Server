@@ -10,7 +10,5 @@ import lombok.NoArgsConstructor;
 public class Move {
     private int index;
     private String player;
-
-    // Getters and Setters
+    private String gameId; // Add gameId to associate the move with a specific game
 }
-
