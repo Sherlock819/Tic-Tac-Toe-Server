@@ -24,6 +24,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/game")
+                .setAllowedOriginPatterns("*")
                 .setAllowedOrigins("http://localhost:3006") // Allow CORS for your React app
                 .withSockJS(); // Enable SockJS
     }

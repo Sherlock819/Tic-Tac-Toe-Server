@@ -12,7 +12,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
@@ -25,6 +24,7 @@ public class GameController {
         this.messagingTemplate = messagingTemplate;
     }
 
+    //Mapped as app/create-game
     @MessageMapping("/create-game")
     @SendTo("/topic/game-created")
     public void createGame(@Payload String gameId, SimpMessageHeaderAccessor headerAccessor) {
@@ -42,6 +42,7 @@ public class GameController {
 
         if (game != null && game.addPlayer(playerId)) {
             if (game.isFull()) {
+                System.out.println("Starting game for gameId : "+gameId);
                 startGame(gameId);
             }
         }
